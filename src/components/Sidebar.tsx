@@ -17,6 +17,7 @@ import {
   DollarSign, // NOVO: Importando DollarSign para Assinaturas
   ListTodo, // NOVO: Importando ListTodo para Tarefas
   Users, // NOVO: Importando Users para Cadastros
+  Wallet, // NOVO: Importando Wallet para Finanças
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -42,6 +43,7 @@ const navItems: NavItem[] = [
   { name: 'Marketing', href: '/marketing', icon: Megaphone, hideForAdmin: true },
   { name: 'Tarefas', href: '/tarefas', icon: ListTodo, hideForAdmin: true }, // NOVO: Item de Tarefas
   { name: 'Cadastros', href: '/cadastros', icon: Users, hideForAdmin: true }, // NOVO: Item de Cadastros
+  { name: 'Minhas Finanças', href: '/financas', icon: Wallet, hideForAdmin: true }, // NOVO: Item de Finanças
   { name: 'Relatórios', href: '/relatorios', icon: BarChart2 },
   { name: 'Minha Loja', href: '/minha-loja', icon: Store, hideForAdmin: true },
   { name: 'Lojas', href: '/lojas', icon: Store, roles: ['admin'] }, // Apenas admins veem

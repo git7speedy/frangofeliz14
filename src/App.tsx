@@ -29,6 +29,7 @@ import Monitor from "./pages/Monitor"; // Importando Monitor
 import SubscriptionsPage from "./pages/Subscriptions"; // NOVO: Importando a página de Assinaturas
 import Tasks from "./pages/Tasks"; // NOVO: Importando a página de Tarefas
 import Registrations from "./pages/Registrations"; // NOVO: Importando a página de Cadastros
+import Financas from "./pages/Financas"; // NOVO: Importando a página de Finanças
 import { cn } from "@/lib/utils"; // Importando cn para classes condicionais
 
 const queryClient = new QueryClient();
@@ -99,6 +100,7 @@ const AppRoutes = () => {
           <Route path="/assinaturas" element={<ProtectedRoute><SubscriptionsPage /></ProtectedRoute>} /> {/* NOVO: Rota para Assinaturas */}
           <Route path="/tarefas" element={<ProtectedRoute><Tasks /></ProtectedRoute>} /> {/* NOVO: Rota para Tarefas */}
           <Route path="/cadastros" element={<ProtectedRoute><Registrations /></ProtectedRoute>} /> {/* NOVO: Rota para Cadastros */}
+          <Route path="/financas" element={<ProtectedRoute><Financas /></ProtectedRoute>} /> {/* NOVO: Rota para Finanças */}
           
           {/* Rotas de Setup */}
           <Route path="/setup" element={<Setup />} />
