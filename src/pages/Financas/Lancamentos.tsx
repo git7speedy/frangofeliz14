@@ -44,8 +44,14 @@ import { Badge } from '@/components/ui/badge';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { FinancialTransaction, TransactionType, TransactionStatus } from '@/types/financial';
+import { useEffect } from 'react';
 
-export default function Lancamentos() {
+interface LancamentosProps {
+  triggerNew?: { type: 'receita' | 'despesa' | null };
+  onTriggerComplete?: () => void;
+}
+
+export default function Lancamentos({ triggerNew, onTriggerComplete }: LancamentosProps) {
   const { profile } = useAuth();
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState<string>('todos');
@@ -102,6 +108,18 @@ export default function Lancamentos() {
     });
     setEditingTransaction(null);
   };
+
+  // Effect to handle trigger from parent component
+  useEffect(() => {
+    if (triggerNew?.type) {
+      resetForm();
+      setFormData(prev => ({ ...prev, type: triggerNew.type as TransactionType }));
+      setIsDialogOpen(true);
+      if (onTriggerComplete) {
+        onTriggerComplete();
+      }
+    }
+  }, [triggerNew, onTriggerComplete]);
 
   const handleOpenDialog = (transaction?: FinancialTransaction) => {
     if (transaction) {

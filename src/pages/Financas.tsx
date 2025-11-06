@@ -16,6 +16,14 @@ import Relatorios from '@/pages/Financas/Relatorios';
 
 export default function Financas() {
   const [activeTab, setActiveTab] = useState('dashboard');
+  const [triggerNewTransaction, setTriggerNewTransaction] = useState<{ type: 'receita' | 'despesa' | null }>({ type: null });
+
+  const handleNewTransaction = (type: 'receita' | 'despesa') => {
+    setActiveTab('lancamentos');
+    setTimeout(() => {
+      setTriggerNewTransaction({ type });
+    }, 100);
+  };
 
   return (
     <div className="container mx-auto py-6 space-y-6">
@@ -75,12 +83,15 @@ export default function Financas() {
 
         {/* Dashboard */}
         <TabsContent value="dashboard" className="space-y-6">
-          <DashboardFinanceiro />
+          <DashboardFinanceiro onNewTransaction={handleNewTransaction} />
         </TabsContent>
 
         {/* Lançamentos */}
         <TabsContent value="lancamentos" className="space-y-6">
-          <Lancamentos />
+          <Lancamentos 
+            triggerNew={triggerNewTransaction}
+            onTriggerComplete={() => setTriggerNewTransaction({ type: null })}
+          />
         </TabsContent>
 
         {/* Contas Bancárias */}

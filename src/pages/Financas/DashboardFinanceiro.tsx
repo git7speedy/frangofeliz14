@@ -18,7 +18,11 @@ import { useState } from 'react';
 
 const COLORS = ['#10B981', '#3B82F6', '#8B5CF6', '#F59E0B', '#EF4444', '#EC4899', '#14B8A6', '#F97316'];
 
-export default function DashboardFinanceiro() {
+interface DashboardFinanceiroProps {
+  onNewTransaction: (type: 'receita' | 'despesa') => void;
+}
+
+export default function DashboardFinanceiro({ onNewTransaction }: DashboardFinanceiroProps) {
   const { summary, loadingSummary } = useFinancialData();
   const { categorySummary, isLoading: loadingCategories } = useCategorySummary();
   const { evolution, isLoading: loadingEvolution } = useMonthlyEvolution(6);
@@ -155,11 +159,11 @@ export default function DashboardFinanceiro() {
             <CardTitle className="text-sm font-medium">Ações Rápidas</CardTitle>
           </CardHeader>
           <CardContent className="flex flex-wrap gap-2">
-            <Button size="sm" className="gap-2">
+            <Button size="sm" className="gap-2" onClick={() => onNewTransaction('receita')}>
               <Plus className="h-4 w-4" />
               Nova Receita
             </Button>
-            <Button size="sm" variant="outline" className="gap-2">
+            <Button size="sm" variant="outline" className="gap-2" onClick={() => onNewTransaction('despesa')}>
               <Plus className="h-4 w-4" />
               Nova Despesa
             </Button>
