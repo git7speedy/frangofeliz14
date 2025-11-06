@@ -44,6 +44,26 @@ Adicionado `DROP TRIGGER IF EXISTS` antes de cada `CREATE TRIGGER`:
 - update_financial_goals_updated_at
 - update_bank_balance_on_transaction
 
+#### 1.2 Erro na Migração - Policy Duplicada
+**Erro:**
+```
+ERROR: 42710: policy "Users can view their store's financial categories" for table "financial_categories" already exists
+```
+
+**Causa:**
+As policies de RLS (Row Level Security) também estavam sendo criadas sem verificar se já existiam.
+
+**Solução:**
+Adicionado `DROP POLICY IF EXISTS` antes de cada `CREATE POLICY` para todas as 31 policies:
+- **financial_categories**: 4 policies (SELECT, INSERT, UPDATE, DELETE)
+- **bank_accounts**: 4 policies (SELECT, INSERT, UPDATE, DELETE)
+- **credit_cards**: 4 policies (SELECT, INSERT, UPDATE, DELETE)
+- **financial_transactions**: 4 policies (SELECT, INSERT, UPDATE, DELETE)
+- **accounts_receivable**: 4 policies (SELECT, INSERT, UPDATE, DELETE)
+- **dream_board**: 4 policies (SELECT, INSERT, UPDATE, DELETE)
+- **financial_goals**: 4 policies (SELECT, INSERT, UPDATE, DELETE)
+- **financial_notifications**: 3 policies (SELECT, INSERT, UPDATE)
+
 #### 2. Erro na Query PostgREST - Relacionamento Ambíguo
 **Erro:**
 ```
@@ -83,7 +103,9 @@ Especificado explicitamente o nome da coluna foreign key na query usando a sinta
 ### Arquivos Modificados
 
 1. **supabase/migrations/20250106_create_financial_module.sql**
-   - Adicionado `IF NOT EXISTS` em todos os `CREATE INDEX`
+   - Adicionado `IF NOT EXISTS` em todos os `CREATE INDEX` (11 índices)
+   - Adicionado `DROP TRIGGER IF EXISTS` antes de cada `CREATE TRIGGER` (8 triggers)
+   - Adicionado `DROP POLICY IF EXISTS` antes de cada `CREATE POLICY` (31 policies)
 
 2. **src/hooks/useFinancialTransactions.ts**
    - Especificado foreign keys explícitas na query PostgREST
@@ -104,6 +126,18 @@ Especificado explicitamente o nome da coluna foreign key na query usando a sinta
 
 ### Observações
 
-- A migração agora é **idempotente** - pode ser executada múltiplas vezes sem erros
+- A migração agora é **100% idempotente** - pode ser executada múltiplas vezes sem erros
+- Todos os objetos do banco de dados (tabelas, índices, triggers, policies) são criados de forma segura
 - A query PostgREST agora funciona corretamente com múltiplos relacionamentos para a mesma tabela
 - O padrão `table:foreign_table!foreign_key_column(*)` deve ser usado sempre que houver múltiplas FKs para a mesma tabela
+
+### Resumo das Correções
+
+| Tipo | Quantidade | Status |
+|------|------------|--------|
+| Índices | 11 | ✅ `CREATE INDEX IF NOT EXISTS` |
+| Triggers | 8 | ✅ `DROP TRIGGER IF EXISTS` + `CREATE TRIGGER` |
+| Policies | 31 | ✅ `DROP POLICY IF EXISTS` + `CREATE POLICY` |
+| Query PostgREST | 2 FKs | ✅ Especificado foreign keys explícitas |
+
+**Total:** 50+ objetos corrigidos para idempotência

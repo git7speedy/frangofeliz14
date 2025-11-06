@@ -320,133 +320,164 @@ ALTER TABLE financial_goals ENABLE ROW LEVEL SECURITY;
 ALTER TABLE financial_notifications ENABLE ROW LEVEL SECURITY;
 
 -- Policies para financial_categories
+DROP POLICY IF EXISTS "Users can view their store's financial categories" ON financial_categories;
 CREATE POLICY "Users can view their store's financial categories" 
   ON financial_categories FOR SELECT 
   USING (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
+DROP POLICY IF EXISTS "Users can insert their store's financial categories" ON financial_categories;
 CREATE POLICY "Users can insert their store's financial categories" 
   ON financial_categories FOR INSERT 
   WITH CHECK (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
+DROP POLICY IF EXISTS "Users can update their store's financial categories" ON financial_categories;
 CREATE POLICY "Users can update their store's financial categories" 
   ON financial_categories FOR UPDATE 
   USING (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
+DROP POLICY IF EXISTS "Users can delete their store's financial categories" ON financial_categories;
 CREATE POLICY "Users can delete their store's financial categories" 
   ON financial_categories FOR DELETE 
   USING (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
 -- Policies para bank_accounts
+DROP POLICY IF EXISTS "Users can view their store's bank accounts" ON bank_accounts;
 CREATE POLICY "Users can view their store's bank accounts" 
   ON bank_accounts FOR SELECT 
   USING (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
+DROP POLICY IF EXISTS "Users can insert their store's bank accounts" ON bank_accounts;
 CREATE POLICY "Users can insert their store's bank accounts" 
   ON bank_accounts FOR INSERT 
   WITH CHECK (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
+DROP POLICY IF EXISTS "Users can update their store's bank accounts" ON bank_accounts;
 CREATE POLICY "Users can update their store's bank accounts" 
   ON bank_accounts FOR UPDATE 
   USING (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
+DROP POLICY IF EXISTS "Users can delete their store's bank accounts" ON bank_accounts;
 CREATE POLICY "Users can delete their store's bank accounts" 
   ON bank_accounts FOR DELETE 
   USING (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
 -- Policies para credit_cards
+DROP POLICY IF EXISTS "Users can view their store's credit cards" ON credit_cards;
 CREATE POLICY "Users can view their store's credit cards" 
   ON credit_cards FOR SELECT 
   USING (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
+DROP POLICY IF EXISTS "Users can insert their store's credit cards" ON credit_cards;
 CREATE POLICY "Users can insert their store's credit cards" 
   ON credit_cards FOR INSERT 
   WITH CHECK (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
+DROP POLICY IF EXISTS "Users can update their store's credit cards" ON credit_cards;
 CREATE POLICY "Users can update their store's credit cards" 
   ON credit_cards FOR UPDATE 
   USING (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
+DROP POLICY IF EXISTS "Users can delete their store's credit cards" ON credit_cards;
 CREATE POLICY "Users can delete their store's credit cards" 
   ON credit_cards FOR DELETE 
   USING (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
 -- Policies para financial_transactions
+DROP POLICY IF EXISTS "Users can view their store's financial transactions" ON financial_transactions;
 CREATE POLICY "Users can view their store's financial transactions" 
   ON financial_transactions FOR SELECT 
   USING (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
+DROP POLICY IF EXISTS "Users can insert their store's financial transactions" ON financial_transactions;
 CREATE POLICY "Users can insert their store's financial transactions" 
   ON financial_transactions FOR INSERT 
   WITH CHECK (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
+DROP POLICY IF EXISTS "Users can update their store's financial transactions" ON financial_transactions;
 CREATE POLICY "Users can update their store's financial transactions" 
   ON financial_transactions FOR UPDATE 
   USING (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
+DROP POLICY IF EXISTS "Users can delete their store's financial transactions" ON financial_transactions;
 CREATE POLICY "Users can delete their store's financial transactions" 
   ON financial_transactions FOR DELETE 
   USING (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
 -- Policies para accounts_receivable
+DROP POLICY IF EXISTS "Users can view their store's accounts receivable" ON accounts_receivable;
 CREATE POLICY "Users can view their store's accounts receivable" 
   ON accounts_receivable FOR SELECT 
   USING (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
+DROP POLICY IF EXISTS "Users can insert their store's accounts receivable" ON accounts_receivable;
 CREATE POLICY "Users can insert their store's accounts receivable" 
   ON accounts_receivable FOR INSERT 
   WITH CHECK (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
+DROP POLICY IF EXISTS "Users can update their store's accounts receivable" ON accounts_receivable;
 CREATE POLICY "Users can update their store's accounts receivable" 
   ON accounts_receivable FOR UPDATE 
   USING (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
+DROP POLICY IF EXISTS "Users can delete their store's accounts receivable" ON accounts_receivable;
 CREATE POLICY "Users can delete their store's accounts receivable" 
   ON accounts_receivable FOR DELETE 
   USING (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
 -- Policies para dream_board
+DROP POLICY IF EXISTS "Users can view their store's dream board" ON dream_board;
 CREATE POLICY "Users can view their store's dream board" 
   ON dream_board FOR SELECT 
   USING (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
+DROP POLICY IF EXISTS "Users can insert their store's dream board" ON dream_board;
 CREATE POLICY "Users can insert their store's dream board" 
   ON dream_board FOR INSERT 
   WITH CHECK (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
+DROP POLICY IF EXISTS "Users can update their store's dream board" ON dream_board;
 CREATE POLICY "Users can update their store's dream board" 
   ON dream_board FOR UPDATE 
   USING (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
+DROP POLICY IF EXISTS "Users can delete their store's dream board" ON dream_board;
 CREATE POLICY "Users can delete their store's dream board" 
   ON dream_board FOR DELETE 
   USING (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
 -- Policies para financial_goals
+DROP POLICY IF EXISTS "Users can view their store's financial goals" ON financial_goals;
 CREATE POLICY "Users can view their store's financial goals" 
   ON financial_goals FOR SELECT 
   USING (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
+DROP POLICY IF EXISTS "Users can insert their store's financial goals" ON financial_goals;
 CREATE POLICY "Users can insert their store's financial goals" 
   ON financial_goals FOR INSERT 
   WITH CHECK (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
+DROP POLICY IF EXISTS "Users can update their store's financial goals" ON financial_goals;
 CREATE POLICY "Users can update their store's financial goals" 
   ON financial_goals FOR UPDATE 
   USING (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
+DROP POLICY IF EXISTS "Users can delete their store's financial goals" ON financial_goals;
 CREATE POLICY "Users can delete their store's financial goals" 
   ON financial_goals FOR DELETE 
   USING (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
 -- Policies para financial_notifications
+DROP POLICY IF EXISTS "Users can view their store's financial notifications" ON financial_notifications;
 CREATE POLICY "Users can view their store's financial notifications" 
   ON financial_notifications FOR SELECT 
   USING (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
+DROP POLICY IF EXISTS "Users can insert their store's financial notifications" ON financial_notifications;
 CREATE POLICY "Users can insert their store's financial notifications" 
   ON financial_notifications FOR INSERT 
   WITH CHECK (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
 
+DROP POLICY IF EXISTS "Users can update their store's financial notifications" ON financial_notifications;
 CREATE POLICY "Users can update their store's financial notifications" 
   ON financial_notifications FOR UPDATE 
   USING (store_id IN (SELECT store_id FROM profiles WHERE id = auth.uid()));
