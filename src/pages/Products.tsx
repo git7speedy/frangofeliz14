@@ -1139,7 +1139,7 @@ export default function Products() {
           setSelectedSupplierProductId(null);
         }
       }}>
-        <DialogContent>
+        <DialogContent className="max-h-[99vh] overflow-auto">
           <DialogHeader>
             <DialogTitle>Editar Produto</DialogTitle>
           </DialogHeader>
@@ -1348,7 +1348,7 @@ export default function Products() {
           setNewVariationStockQuantity("0");
         }
       }}>
-        <DialogContent>
+        <DialogContent className="max-h-[99vh] overflow-auto">
           <DialogHeader>
             <DialogTitle>Gerenciar Variações para "{currentProductForVariations?.name}"</DialogTitle>
           </DialogHeader>
