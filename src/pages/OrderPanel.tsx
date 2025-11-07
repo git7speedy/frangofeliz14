@@ -508,6 +508,18 @@ export default function OrderPanel() {
             window.onload = function() {
               window.print();
             };
+            
+            // Fecha a janela automaticamente após imprimir ou cancelar
+            window.onafterprint = function() {
+              window.close();
+            };
+            
+            // Fallback para navegadores que não suportam onafterprint
+            if (!window.matchMedia) {
+              setTimeout(function() {
+                window.close();
+              }, 1000);
+            }
           </script>
         </body>
       </html>
